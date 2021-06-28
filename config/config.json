@@ -246,13 +246,10 @@
         "variable": { // 声明变量,在hooks参数中的url参数和params参数中使用大括号{}可直接引用在此声明的变量，"msg_"开头变量为程序内置变量不允许赋值
             "msg_simple": null, // msg_simple为简化的日志消息，用于下面hooks消息推送接口引用
             //  "msg_raw": null,    // msg_raw为完整的日志消息，用于下面hooks消息推送接口引用，若不引用最好注释掉，否则占用内存空间
-            "title": "B站助手脚本消息推送", // 此为自定义变量，用于下面hooks消息推送接口引用
-            // "email": "996881204@qq.com"
-            "SCKEY": ""
-            /* 
-            "telegram_bot_token": "",
-            "telegram_bot_chatid": "",
-            "SKEY": "" */
+            "SKEY": "022bca048bbc638ecf18e4ab92ae33ba",
+            "accessToken": "3927c608-ee4c-40c9-91b0-105d4e3373ac",
+            "ACCESS_TOKEN": "121cc6ddaef7a00962c12eb07f63d1693b427067a84c603a1608817fde21e670",
+            "SECRET": "SECf6621ceefab77a5411e911a5ebc9b353f1ebba2deaedc505073471890ff25508"
         },
         "hooks": [ // 在这里以数组的形式定义所有消息推送回调接口
             // {
@@ -266,23 +263,28 @@
             //         "desp": "{msg_simple}"
             //     }
             // }, //若要实现其他消息推送接口，需要自己查阅相关文档构建method，url和params三个参数，下面是邮箱推送和telegram_bot推送的例子，其他平台自行探索
-            // {
-            //     "enable": false,
-            //     "name": "邮箱消息推送",
-            //     "msg_separ": "<br>",
-            //     "method": 1,
-            //     "url": "https://email.berfen.com/api",
-            //     "params": {
-            //         "to": "{email}",
-            //         "title": "{title}",
-            //         "text": "{msg_simple}"
-            //     }
-            // },
+            {
+                "enable": true,
+                "name": "钉钉消息推送",
+                "msg_separ": "\n\n", // 消息分隔符，
+                "method": 3,
+                "url": "https://admin.cmyr.ltd/api/push/forwardByAccessToken",
+                "params": {
+                    "accessToken": "{accessToken}",
+                    "title": "{title}",
+                    "desp": "{msg_simple}",
+                    "type": "Dingtalk",
+                    "config": {
+                        "ACCESS_TOKEN": "{ACCESS_TOKEN}",
+                        "SECRET": "{SECRET}"
+                    }
+                }
+            },
             {
                 "enable": true,
                 "name": "酷推个人QQ消息推送",
                 "method": 3,
-                "url": "https://push.xuthus.cc/send/{SKEY}",
+                "url": "https://push.xuthus.cc/psend/{SKEY}",
                 "params": {
                     "c": "{msg_simple}"
                 }
