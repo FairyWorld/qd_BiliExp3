@@ -265,28 +265,43 @@
             // }, //若要实现其他消息推送接口，需要自己查阅相关文档构建method，url和params三个参数，下面是邮箱推送和telegram_bot推送的例子，其他平台自行探索
             {
                 "enable": true,
+                "name": "酷推个人QQ消息推送",
+                "method": 3,
+                "url": "https://push.xuthus.cc/psend/{SKEY}",
+                "params": {
+                    "c": "{msg_simple}"
+                }
+            },
+            {
+                "enable": true,
+                "name": "企业微信应用推送",
+                // "msg_separ": "\n\n", // 消息分隔符，
+                "method": 0,
+                "url": "https://admin.cmyr.ltd/api/push/forwardByAccessToken",
+                "params": {
+                    "accessToken": "{accessToken}",
+                    "title": "{title}",
+                    "desp": "{msg_simple}",
+                    "type": "WechatApp",
+                    "WX_APP_CORPID": "ww73a8d01ac19c5c5b",
+                    "WX_APP_AGENTID": "1000003",
+                    "WX_APP_SECRET": "F32wttV_7nN8KsKllvy9BIAlrqdzrEaHtuhaQ1V47H4",
+                    "WX_APP_USERID": "@all"
+                }
+            },
+            {
+                "enable": true,
                 "name": "钉钉消息推送",
                 "msg_separ": "\n\n", // 消息分隔符，
-                "method": 3,
+                "method": 0,
                 "url": "https://admin.cmyr.ltd/api/push/forwardByAccessToken",
                 "params": {
                     "accessToken": "{accessToken}",
                     "title": "{title}",
                     "desp": "{msg_simple}",
                     "type": "Dingtalk",
-                    "config": {
-                        "ACCESS_TOKEN": "{ACCESS_TOKEN}",
-                        "SECRET": "{SECRET}"
-                    }
-                }
-            },
-            {
-                "enable": true,
-                "name": "酷推个人QQ消息推送",
-                "method": 3,
-                "url": "https://push.xuthus.cc/psend/{SKEY}",
-                "params": {
-                    "c": "{msg_simple}"
+                    "ACCESS_TOKEN": "121cc6ddaef7a00962c12eb07f63d1693b427067a84c603a1608817fde21e670",
+                    "SECRET": "SECf6621ceefab77a5411e911a5ebc9b353f1ebba2deaedc505073471890ff25508"
                 }
             }
             /*,
