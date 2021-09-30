@@ -223,9 +223,14 @@
         "judgement_task": { //  任务:风纪委员投票
             "enable": true, //  任务开关，值为true或false分别代表开启和关闭
             "run_once": true, //没有案件立即退出，值为true或false，值为false才会等待超时退出(Actions上默认)，云函数上推荐设置为true并每隔30分钟调用此功能
-            "params": { // 默认投票参数，vote值程序会自动使用从众法填写，注意此项下面的可选子参数的值不止vote和attr两个，其他参数请看项目的说明文件(其他参数均为非必须参数可以不需要)
-                "vote": 4, // 投票类型，值为整数，4为投删除票，其他取值看项目说明文件，非必须参数此行可以删除但不建议
-                "attr": 0 // 是否匿名，值为整数，0为匿名投票，其他取值看项目说明文件，非必须参数此行可以删除但不建议
+            // "params": { // 默认投票参数，vote值程序会自动使用从众法填写，注意此项下面的可选子参数的值不止vote和attr两个，其他参数请看项目的说明文件(其他参数均为非必须参数可以不需要)
+            //     "vote": 4, // 投票类型，值为整数，4为投删除票，其他取值看项目说明文件，非必须参数此行可以删除但不建议
+            //     "attr": 0 // 是否匿名，值为整数，0为匿名投票，其他取值看项目说明文件，非必须参数此行可以删除但不建议
+            // },
+            "params": {
+                "vote": 12, // 新版 投票类型 11：好，12：普通；13：差，14：无法判断
+                "anonymous": 1, // 新版 是否匿名，1为匿名投票
+                "content": "" // 新版 案件评论
             },
             "vote_num": 20, // 投票次数，值为整数，达到投票次数后退出任务
             "check_interval": 420, // 定时检查间隔，值为数字(单位秒)，当没有案件时每隔一段时间定时检查是否有新的案件，请适当设置此间隔(不宜过短或过长)
@@ -245,7 +250,7 @@
         }, // 定义http头部，访问消息推送接口时使用
         "variable": { // 声明变量,在hooks参数中的url参数和params参数中使用大括号{}可直接引用在此声明的变量，"msg_"开头变量为程序内置变量不允许赋值
             "msg_simple": null, // msg_simple为简化的日志消息，用于下面hooks消息推送接口引用
-            //  "msg_raw": null,    // msg_raw为完整的日志消息，用于下面hooks消息推送接口引用，若不引用最好注释掉，否则占用内存空间
+            "msg_raw": null,    // msg_raw为完整的日志消息，用于下面hooks消息推送接口引用，若不引用最好注释掉，否则占用内存空间
             "SKEY": "022bca048bbc638ecf18e4ab92ae33ba",
             "accessToken": "3927c608-ee4c-40c9-91b0-105d4e3373ac",
             "ACCESS_TOKEN": "121cc6ddaef7a00962c12eb07f63d1693b427067a84c603a1608817fde21e670",
@@ -280,7 +285,7 @@
                 "url": "https://admin.cmyr.ltd/api/push/forwardByAccessToken",
                 "params": {
                     "accessToken": "{accessToken}",
-                    "title": "{title}",
+                    "title": "BiliExp",
                     "desp": "{msg_simple}",
                     "type": "WechatApp",
                     "WX_APP_CORPID": "ww73a8d01ac19c5c5b",
@@ -297,8 +302,8 @@
                 "url": "https://admin.cmyr.ltd/api/push/forwardByAccessToken",
                 "params": {
                     "accessToken": "{accessToken}",
-                    "title": "{title}",
-                    "desp": "{msg_simple}",
+                    "title": "BiliExp",
+                    "desp": "{msg_raw}",
                     "type": "Dingtalk",
                     "ACCESS_TOKEN": "121cc6ddaef7a00962c12eb07f63d1693b427067a84c603a1608817fde21e670",
                     "SECRET": "SECf6621ceefab77a5411e911a5ebc9b353f1ebba2deaedc505073471890ff25508"
