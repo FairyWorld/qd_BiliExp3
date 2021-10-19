@@ -198,10 +198,10 @@
                 "关注",
                 "转发"
             ], // 黑名单关键字，值为字符串数组，出现关键字的动态会被清除
-            "unfollowed": false, // 删除已转发的但是没有关注的up主的动态，值为true或false分别代表删除和忽略
+            "unfollowed": true, // 删除已转发的但是没有关注的up主的动态，值为true或false分别代表删除和忽略
             "days_range": [
                 7,
-                30
+                365
             ] // 限制删除动态的时间区间，值为二维整数数组(单位天)，这里表示只对7天之前30天以内的动态执行清理，天数按执行当天24点向前计算
         },
         "manga_sign_task": true, // 任务:漫画app签到
@@ -250,7 +250,7 @@
         }, // 定义http头部，访问消息推送接口时使用
         "variable": { // 声明变量,在hooks参数中的url参数和params参数中使用大括号{}可直接引用在此声明的变量，"msg_"开头变量为程序内置变量不允许赋值
             "msg_simple": null, // msg_simple为简化的日志消息，用于下面hooks消息推送接口引用
-            "msg_raw": null,    // msg_raw为完整的日志消息，用于下面hooks消息推送接口引用，若不引用最好注释掉，否则占用内存空间
+            "msg_raw": null, // msg_raw为完整的日志消息，用于下面hooks消息推送接口引用，若不引用最好注释掉，否则占用内存空间
             "SKEY": "022bca048bbc638ecf18e4ab92ae33ba",
             "accessToken": "3927c608-ee4c-40c9-91b0-105d4e3373ac",
             "ACCESS_TOKEN": "121cc6ddaef7a00962c12eb07f63d1693b427067a84c603a1608817fde21e670",
